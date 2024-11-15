@@ -12,6 +12,7 @@
  *   
  * Version History:
  *   - [Version 1.0] - [11/14/2024]: Initial creation.
+ *   - [Version 1.1] - [11/15/2024]: Fixed state machine actions.
  * 
  * Notes:
  *   - This code is based off the synchronous state machine design taught at
@@ -99,11 +100,9 @@ int SM1_Tick(int state) {           // State machine 1
 
     switch (state) {                // State actions start
         case SM1_INIT:
-            state = SM1_S1;
             break;
 
         case SM1_S1:
-            state = SM1_S1;
             break;
 
         default:
@@ -127,11 +126,9 @@ int SM2_Tick(int state) {           // State machine 2
 
     switch (state) {                // State actions start
         case SM2_INIT:
-            state = SM1_S1;
             break;
 
         case SM2_S1:
-            state = SM2_S1;
             break;
 
         default:
