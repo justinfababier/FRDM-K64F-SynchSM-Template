@@ -11,7 +11,7 @@
  *   required libraries, classes or functions that depend on this header, etc.]
  *   
  * Version History:
- *   - [Version 1.0] - [Date]: Initial creation.
+ *   - [Version 1.0] - [11/14/2024]: Initial creation.
  * 
  * Notes:
  *   - This code is based off the synchronous state machine design taught at
@@ -19,7 +19,7 @@
  *   - The template is designed to use 1ms-per-tick.
  *****************************************************************************/
 
- 
+
 #include "fsl_device_registers.h"
 
 #define NUM_TASKS 2
@@ -147,19 +147,20 @@ int main(void) {
     // Initialize I/O mode
 
     // Task 1
-	unsigned char i = 0;
-	tasks[i].state = SM1_INIT;
-	tasks[i].period = SM1_PERIOD;
-	tasks[i].elapsedTime = tasks[i].period;
-	tasks[i].TickFct = &SM1_Tick;
+    unsigned char i = 0;
+    tasks[i].state = SM1_INIT;
+    tasks[i].period = SM1_PERIOD;
+    tasks[i].elapsedTime = tasks[i].period;
+    tasks[i].TickFct = &SM1_Tick;
 
     // Task 2
-	i++;
-	tasks[i].state = SM2_INIT;
-	tasks[i].period = SM2_PERIOD;
-	tasks[i].elapsedTime = tasks[i].period;
-	tasks[i].TickFct = &SM2_Tick;
+    i++;
+    tasks[i].state = SM2_INIT;
+    tasks[i].period = SM2_PERIOD;
+    tasks[i].elapsedTime = tasks[i].period;
+    tasks[i].TickFct = &SM2_Tick;
 
+    // Timer functions
     TimerSet(GCD_PERIOD);
     TimerOn();
 
