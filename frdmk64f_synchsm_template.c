@@ -113,7 +113,7 @@ int SM1_Tick(int state) {           // State machine 1
 int SM2_Tick(int state) {           // State machine 2
     switch (state) {                // State transitions start
         case SM2_INIT:
-            state = SM1_S1;
+            state = SM2_S1;
             break;
 
         case SM2_S1:
