@@ -25,10 +25,10 @@
 #define NUM_TASKS 2
 
 typedef struct _task{
-	signed char state;                      // Task's current state
-	unsigned long period;			// Task period
-	unsigned long elapsedTime;		// Time elapsed since last task tick
-	int (*TickFct)(int);			// Task tick function
+	signed char state;              // Task's current state
+	unsigned long period;           // Task period
+	unsigned long elapsedTime;      // Time elapsed since last task tick
+	int (*TickFct)(int);            // Task tick function
 } task;
 
 task tasks[NUM_TASKS];              // Declared task array
