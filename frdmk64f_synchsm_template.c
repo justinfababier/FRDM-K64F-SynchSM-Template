@@ -11,10 +11,10 @@
  *   required libraries, classes or functions that depend on this header, etc.]
  *   
  * Version History:
- *   - [Version 1.0] - [11/14/2024]: Initial creation.
- *   - [Version 1.1] - [11/15/2024]: Fixed state machine actions.
- *   - [Version 1.2] - [11/16/2024]: - Fixed errors within SMs' tick functions i.e., added 'return state;.
- *				     - Added comments throughout code.
+ *   - [Version 1.0]    - [11/14/2024]: Initial creation.
+ *   - [Version 1.1]    - [11/15/2024]: Fixed state machine actions.
+ *   - [Version 1.2]    - [11/16/2024]: - Fixed errors within SMs' tick functions i.e., added 'return state;.
+ *                                      - Added comments, spacing throughout code.
  *		
  * 
  * Notes:
@@ -112,8 +112,10 @@ int SM1_Tick(int state) {
     switch (state) {
         case SM1_INIT:
             break;                  // Actions for SM1_INIT
+
         case SM1_S1:
             break;                  // Actions for SM1_S1
+
         default:
             break;
     }
@@ -141,8 +143,10 @@ int SM2_Tick(int state) {
     switch (state) {
         case SM2_INIT:
             break;                  // Actions for SM2_INIT
+
         case SM2_S1:
             break;                  // Actions for SM2_S1
+
         default:
             break;
     }
