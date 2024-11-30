@@ -4,23 +4,7 @@
  * Date Created: 11/14/2024
  * Description: 
  *   The provided code sets up a simple cooperative multitasking system using a 
- *   Periodic Interrupt Timer (PIT) to run synchronous state machines.
- * 
- * Usage:
- *   [Any specific usage instructions or prerequisites for this file, e.g., 
- *   required libraries, classes or functions that depend on this header, etc.]
- *   
- * Version History:
- *   - [Version 1.0]    - [11/14/2024]: Initial creation.
- *   - [Version 1.1]    - [11/15/2024]: Fixed state machine actions.
- *   - [Version 1.2]    - [11/16/2024]: - Fixed errors within SMs' tick functions i.e., added 'return state;.
- *                                      - Added comments, spacing throughout code.
- *		
- * 
- * Notes:
- *   - This code is based off the synchronous state machine design taught at
- *     University of California, Riverside's EE 120B course.
- *   - The template is designed to use 1ms-per-tick.
+ *   Periodic Interrupt Timer (PIT) to run synchronous finite-state machines.
  *****************************************************************************/
 
 #include "fsl_device_registers.h"
