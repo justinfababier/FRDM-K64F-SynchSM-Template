@@ -30,44 +30,44 @@ const unsigned long SM2_PERIOD = 1; // State machine 2 period
 
 // PIT0 Interrupt Service Routine (ISR)
 void PIT0_IRQHandler(void) {
-    // Clear the interrupt flag for PIT channel 0
-    PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK;
+	// Clear the interrupt flag for PIT channel 0
+	PIT_TFLG0 |= PIT_TFLG_TIF_MASK;
 
-    // Iterate over all tasks and handle execution
-    for (unsigned char i = 0; i < NUM_TASKS; i++) {
-        if (tasks[i].elapsedTime >= tasks[i].period) {
-            // Execute the task's tick function and update its state
-            tasks[i].state = tasks[i].TickFct(tasks[i].state);
-            // Reset elapsed time for the task
-            tasks[i].elapsedTime = 0;
-        }
-        // Increment elapsed time by the GCD_PERIOD
-        tasks[i].elapsedTime += GCD_PERIOD;
-    }
+	// Iterate over all tasks and handle execution
+	for (unsigned char i = 0; i < NUM_TASKS; i++) {
+		if (tasks[i].elapsedTime >= tasks[i].period) {
+			// Execute the task's tick function and update its state
+			tasks[i].state = tasks[i].TickFct(tasks[i].state);
+			// Reset elapsed time for the task
+			tasks[i].elapsedTime = 0;
+		}
+		// Increment elapsed time by the GCD_PERIOD
+		tasks[i].elapsedTime += GCD_PERIOD;
+	}
 }
 
 // Function to configure the PIT timer for the desired period
 void TimerSet(unsigned long period) {
-    // Enable clock for PIT module
-    SIM->SCGC6 |= SIM_SCGC6_PIT_MASK;
+	// Enable clock for PIT module
+	SIM_SCGC6 |= SIM_SCGC6_PIT_MASK;
 
-    // Enable the PIT module
-    PIT->MCR &= ~PIT_MCR_MDIS_MASK;
+	// Enable the PIT module
+	PIT_MCR &= ~PIT_MCR_MDIS_MASK;
 
-    // Calculate the timer load value for a 1 ms interrupt
-    uint32_t timerLoadValue = (period * (SystemCoreClock / 1000)) - 1;
-    PIT->CHANNEL[0].LDVAL = PIT_LDVAL_TSV(timerLoadValue);
+	// Calculate the timer load value for a 1 ms interrupt
+	uint32_t timerLoadValue = (period * (SystemCoreClock / 1000)) - 1;
+	PIT_LDVAL0 = PIT_LDVAL_TSV(timerLoadValue);
 
-    // Enable interrupts for PIT channel 0
-    PIT->CHANNEL[0].TCTRL |= PIT_TCTRL_TIE_MASK;
+	// Enable interrupts for PIT channel 0
+	PIT_TCTRL0 |= PIT_TCTRL_TIE_MASK;
 }
 
 // Function to start the PIT timer
 void TimerOn() {
-    // Start the PIT timer on channel 0
-    PIT->CHANNEL[0].TCTRL |= PIT_TCTRL_TEN_MASK;
-    // Enable the PIT interrupt in the NVIC
-    NVIC_EnableIRQ(PIT0_IRQn);
+	// Start the PIT timer on channel 0
+	PIT_TCTRL0 |= PIT_TCTRL_TEN_MASK;
+	// Enable the PIT interrupt in the NVIC
+	NVIC_EnableIRQ(PIT0_IRQn);
 }
 
 // State machine enumerations and declarations
